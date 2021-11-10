@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentBot", "CommentBot\CommentBot.csproj", "{2C0100E2-C62E-4950-A6CC-D99AD905E37F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4637E403-4744-4E27-BE3B-057C32205442} = {4637E403-4744-4E27-BE3B-057C32205442}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwicasAPI", "..\..\TwicasAPI\TwicasAPI\TwicasAPI.csproj", "{4637E403-4744-4E27-BE3B-057C32205442}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C0100E2-C62E-4950-A6CC-D99AD905E37F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C0100E2-C62E-4950-A6CC-D99AD905E37F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C0100E2-C62E-4950-A6CC-D99AD905E37F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C0100E2-C62E-4950-A6CC-D99AD905E37F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4637E403-4744-4E27-BE3B-057C32205442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4637E403-4744-4E27-BE3B-057C32205442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4637E403-4744-4E27-BE3B-057C32205442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4637E403-4744-4E27-BE3B-057C32205442}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08EEDC77-B99E-4E32-804A-C642CCFA357E}
+	EndGlobalSection
+EndGlobal
