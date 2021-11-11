@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\TwicasAPI\TwicasAPI\TwicasAPI.csproj" />
+    <ProjectReference Include="..\..\TwicasAPI\TwicasAPI\TwicasAPI.csproj" />
   </ItemGroup>
 
 </Project>
