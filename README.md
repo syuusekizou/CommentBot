@@ -31,6 +31,7 @@
 ### インストール
 1. 下記リンクのzipファイルをダウンロードしてください。  
    - [http://fumyuun.html.xdomain.jp/tool/CommentBot.zip](http://fumyuun.html.xdomain.jp/tool/CommentBot.zip)
+   - ダウンロードできない場合、URLをコピーしてブラウザで開いてみてください。
 2. ダウンロードしたzipファイルを解凍してください。
 3. 解凍して作成されたフォルダを適当なフォルダに配置してください。
 
