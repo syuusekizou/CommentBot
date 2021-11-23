@@ -11,7 +11,7 @@ namespace CommentBot
         /// <summary>
         /// 取得コメント数
         /// </summary>
-        private const int MAX_COMMENT = 20;
+        private const int MaxComment = 20;
 
         static void Main(string[] args)
         {
@@ -29,8 +29,8 @@ namespace CommentBot
                 //定期的にキーワードをチェックしてコメント送信
                 while (true)
                 {
-                    System.Threading.Thread.Sleep(10 * 1000);
-                    var comments = api.GetComments(MAX_COMMENT);
+                    System.Threading.Thread.Sleep(5 * 1000);
+                    var comments = api.GetComments(MaxComment);
                     SendComment(api, comments, movieId);
                     api.SaveComments(comments);
                 }
@@ -76,7 +76,7 @@ namespace CommentBot
         /// <param name="api">コメントAPI</param>
         private static void SaveComments(CommentAPI api)
         {
-            var comments = api.GetComments(MAX_COMMENT);
+            var comments = api.GetComments(MaxComment);
             api.SaveComments(comments);
         }
 
