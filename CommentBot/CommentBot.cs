@@ -97,8 +97,11 @@ namespace CommentBot
                 var isPost = api.Contains(list, item.Key);
                 if (isPost)
                 {
-                    var response = api.PostComment(movieId, $"{item.Value}{api.GetRandom()}");
-                    api.SaveComments(response.Comment);
+                    item.Value.ForEach(x =>
+                    {
+                        var response = api.PostComment(movieId, $"{x}{api.GetRandom()}");
+                        api.SaveComments(response.Comment);
+                    });
                 }
             }
         }
