@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using TwicasAPI.v2.api;
 using TwicasAPI.v2.model;
 
@@ -12,6 +13,11 @@ namespace CommentBot
         /// 取得コメント数
         /// </summary>
         private const int MaxComment = 20;
+
+        /// <summary>
+        /// 待機秒数
+        /// </summary>
+        private const int WaitSeconds = 5 * 1000;
 
         static void Main(string[] args)
         {
@@ -29,7 +35,7 @@ namespace CommentBot
                 //定期的にキーワードをチェックしてコメント送信
                 while (true)
                 {
-                    System.Threading.Thread.Sleep(5 * 1000);
+                    System.Threading.Thread.Sleep(WaitSeconds);
                     var comments = api.GetComments(MaxComment);
                     SendComment(api, comments, movieId);
                     api.SaveComments(comments);
@@ -88,8 +94,12 @@ namespace CommentBot
         /// <param name="movieId">ライブID</param>
         private static void SendComment(CommentAPI api, List<(string, string)> comments, string movieId)
         {
-            //取得したコメントから処理済みのコメントを除外
+            const int millisecondsTimeout = 1000;
+
+            //取得したコメントから処理済みコメント・除外キーワードを含むコメントを除外
             var list = comments.Except(api.GetSaveComments());
+            var excludeKeyword = api.GetConfig().ExcludeKeyword;
+            list = list.Where(x => !IsExist(x.Item2, excludeKeyword));
 
             //一致するコメントがあればコメント送信
             foreach (var item in api.GetConfig().Keyword)
@@ -97,13 +107,32 @@ namespace CommentBot
                 var isPost = api.Contains(list, item.Key);
                 if (isPost)
                 {
-                    item.Value.ForEach(x =>
+                    foreach (var comment in item.Value)
                     {
-                        var response = api.PostComment(movieId, $"{x}{api.GetRandom()}");
+                        var response = api.PostComment(movieId, $"{comment}{api.GetRandom()}");
                         api.SaveComments(response.Comment);
-                    });
+                        Thread.Sleep(millisecondsTimeout);
+                    }
                 }
             }
+        }
+
+        /// <summary>
+        /// 存在チェック
+        /// </summary>
+        /// <param name="comment">コメント</param>
+        /// <param name="keywords">キーワード</param>
+        /// <returns>True:存在する</returns>
+        private static bool IsExist(string comment, List<string> keywords)
+        {
+            foreach (var keyword in keywords)
+            {
+                if (comment.Contains(keyword))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
